@@ -1,0 +1,124 @@
+<div class="navigation col-lg-12">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">{{ title }}</a>
+      </div>
+
+      <ul class="nav navbar-nav" *ngIf="identity">
+        <li>
+          <a [routerLink]="['/home']" [routerLinkActive]="[active]">
+            <span class="glyphicon glyphicon-home"></span>
+            Inicio
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/timeline']" [routerLinkActive]="[active]">
+            <!--<span class="glyphicon glyphicon-eye-open"></span>-->
+            <!--<span class="fa fa-newspaper-o" aria-hidden="false"></span>-->
+            <span class="fas fa-newspaper"></span>
+            Publicaciones
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/gente']" [routerLinkActive]="[active]">
+            <!--<span class="glyphicon glyphicon-user"></span> -->
+            <span class="fas fa-user-friends"></span>
+            Descubre
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/mensajes']" [routerLinkActive]="[active]">
+            <span class="glyphicon glyphicon-envelope"></span>
+            Mensajes
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+        <li>
+          <a [routerLink]="['/login']" [routerLinkActive]="[active]">
+            <span class="glyphicon glyphicon-log-in"></span>
+            Login
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/registro']" [routerLinkActive]="[active]">
+            <span class="glyphicon glyphicon-user"></span>
+            Registro
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+        <!--lo que esta en el dropdown poniendo en el navbar-->
+
+        <!--<li class="avatar">
+          !-- cargar imagen de usuario --
+          <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image" />
+        </li>-->
+        <li class="avatar">
+          <button class="especial" [routerLink]="['/perfil', identity._id]" routerLinkActive="router-link-active" title="{{identity.nick}}">
+            <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image"/> {{identity.nick}}
+          </button>
+        </li>
+        <!--<li>
+          <a [routerLink]="['/perfil', identity._id]" routerLinkActive="router-link-active">
+            {{identity.nick}}
+          </a>
+        </li>-->
+        <li class="nav-item">
+          <a [routerLink]="['/mis-datos']" [routerLinkActive]="[active]" title="Configuración" >
+            <span class="fas fa-user-cog"></span>
+            Mis datos
+          </a>
+        </li>
+        <li>
+          <a class="pointer" (click)="logOut()" title="Log out">
+            <span class="fas fa-sign-out-alt"></span>
+            Salir
+          </a>
+        </li>
+        <!--configuracion inicial--
+        <li class="avatar">
+          !-- cargar imagen de usuario --
+          <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image" />
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {{identity.name}} <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a [routerLink]="['/perfil', identity._id]" routerLinkActive="router-link-active">
+                <span class="glyphicon glyphicon-user"></span>
+                Mi perfil
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/mis-datos']" [routerLinkActive]="[active]">
+                <span class="glyphicon glyphicon-cog"></span>
+                Mis datos
+              </a>
+            </li>
+            <li>
+              <a class="pointer" (click)="logOut()">
+                <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar cesión
+              </a>
+            </li>
+          </ul>
+        </li>
+        -->
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

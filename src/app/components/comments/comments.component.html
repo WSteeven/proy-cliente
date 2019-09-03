@@ -1,0 +1,19 @@
+<!--Formulario de comentarios-->
+<div id="new-comment" class="col-lg-8 pull-right panel panel-default">
+    <div class="alert alert-sucess" *ngIf="status=='success'">
+        Comentario realizado
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        Comentario no realizado
+    </div>
+
+    <form #newCommentForm="ngForm" (ngSubmit)="onSubmit(newCommentForm, $event);" class="col-lg-10">
+        <p>
+            <input type="text" name="comment" required>
+            <input type="file" name="image" class="custom-file-input" required/>
+            <input type="submit" value="Comentar" class="fa fa-comment-alt" [disabled]=!newCommentForm.form.valid/>
+        </p>
+        
+    </form>
+
+</div>
